@@ -19,13 +19,13 @@ This project uses code from the following sources:
 
 ## Data preprocessing
 
-Because the original images were of all different sizes, I needed to resize the images to begin with. I chose the dimensions (640, 400) and with help from ChatGPT, was able to reshape all of these images to these dimensions. I was then able to create the training and test set from this dataset, with around 20% of the images going to the test set. Since this is an unsupervised learning problem, there are is no dataset for image labels.
+Because the original images were of all different sizes, I needed to resize the images to begin with. I chose the dimensions (640, 400) and with help from ChatGPT, was able to reshape all of these images to these dimensions. I was then able to create the training and test set from this dataset, with around 20% of the images going to the test set. Since this is an unsupervised learning problem, there is no dataset for image labels.
 
-One issue I noticed right at the start is that the photos are not all aligned. For instance, some animals (such as a mouse or cat) are staring straight at the 'camera', whereas others (such as elephants) are looking off to the side. This isn't ideal for an autoencoder, and is something important to keep in mind. 
+One issue I noticed right at the start is that the photos are not all aligned. For instance, some animals (such as a mouse or cat) are staring straight ahead, whereas others (such as elephants) are looking off to the side. This isn't ideal for an autoencoder, and is an important consideration to keep in mind when evaluating the performance of the models.
 
 ## Autoencoders
 
-To build the autoencoders, I followed along the Keras tutorial (https://blog.keras.io/building-autoencoders-in-keras.html). For the variational autoencoder, I also drew from the ConvolutionalVAE notebook from week 4 of class.
+To build the autoencoders, I followed the Keras tutorial (https://blog.keras.io/building-autoencoders-in-keras.html). For the variational autoencoder, I also drew from the ConvolutionalVAE notebook from week 4 of class.
 
 In order to debug, visualise the results, explore the latent space, generate random latent vectors, etc. I also used ChatGPT to help with the code. 
 
@@ -47,7 +47,7 @@ I continued with the tutorial to build a convolutional autoencoder. This model u
 
 ![convolutional autoencoder 2](https://git.arts.ac.uk/storage/user/650/files/4b8c7453-8468-4d37-a074-15489af0fac7)
 
-The overall forms are a lot more defined, and it is easy to distinguish between the different animals. However, after discussing with the coding 3 team, I realised that the latent space is actually quite large and so is not compressed enough to generalise to new images. The input images were of the shape (None, 640, 400, 4) and only get compressed to (None, 80, 50, 8).  
+The overall forms are a lot more defined, and it is easy to distinguish between the different animals. However, after discussing with the coding 3 team, I realised that the latent space is actually quite large and so is not compressed enough to generalise to new images. The input images were of the shape (None, 640, 400, 4) and the latent space is (None, 80, 50, 8).  
 
 <img src="https://git.arts.ac.uk/storage/user/650/files/9d3e8334-f5be-4ca4-aa0b-a5d61aaac6ed" width="45%">
 
@@ -55,11 +55,11 @@ To fully explore the potential of autoencoders, I decided to build on this lates
 
 ### Convolutional autoencoder - Part 2
 
-With help from the coding 3 team and ChatGPT, I was able to build a new model that flattens the data down to a more compressed format. This was acheived by using the Flatten() command and adding Dense() layers to the model, as well as using Reshape() at the decoder level.
+With help from the coding 3 team and ChatGPT, I was able to build a new model that flattens the data down to a more compressed format. This was achieved by using the Flatten() command and adding Dense() layers to the model, as well as using Reshape() at the decoder level.
 
 <img src="https://git.arts.ac.uk/storage/user/650/files/4eb414c6-9425-41ec-a804-e8decf060198" width="45%">
 
-Despite the compressed latent vector, the reconstructed images still keep the outline of the animal and are more defined than the simplest autoencoder. They are definitely 'grainier' in appearance than the first convolutional autoencoder, and it is more difficult to make out the features of the animal. 
+Despite the compressed latent vector, the reconstructed images still keep the outline of the animal and are more defined than the simplest autoencoder. They are definitely more granular in appearance than the first convolutional autoencoder, and it is more difficult to make out the features of the animal. 
 
 ![convolutional autoencoder 2 results](https://git.arts.ac.uk/storage/user/650/files/3a5bdec2-418e-4da7-8bbb-9470c74b6ca3)
 
@@ -73,13 +73,13 @@ Initially, the dataset didn't work with this model due to its shape. With help f
 
 <img src="https://git.arts.ac.uk/storage/user/650/files/84b3fa22-2c05-4cd5-b4eb-b5e948101af2" width="45%">
 
-After training and compiling, I immediately noticed that the loss was always 'NaN' (not a number). This was confirmed when I tried to visualise the reconstructed images, and nothing appeared. There was no error message in the code, so it wasn't obvious what had gone wrong.
+After training and compiling, I immediately noticed that the loss was always 'NaN' (not a number). This was confirmed when I tried to visualise the reconstructed images and nothing appeared. There was no error message in the code, so it wasn't obvious what had gone wrong.
 
-ChatGPT gave me advice on what to check. Two of these were setting the correct learning rate and decreasing the batch size. I created a separate Adam optimiser object that set the learning rate to 0.0001 and decreased the batch size to 16. These changes worked, and when training the model a second time, I saw a proper loss value (albeit a very large one).
+ChatGPT gave me advice on what to check. Two of these were setting the correct learning rate and decreasing the batch size. Following this advice, I created a separate Adam optimiser object that set the learning rate to 0.0001 and decreased the batch size to 16. These changes worked, and when training the model a second time, I saw a proper loss value (albeit a very large one).
 
 ![vae model results](https://git.arts.ac.uk/storage/user/650/files/5929ce82-0115-490b-bc47-e5b898fc6dac)
 
-The results here are more similar to the simple autoencoder. The outlines are generally quite blurry, and seem to blend together different animal forms (for example, the fourth one appears to have cat and mouse features). Additionally, there seems to be some interesting behaviour with the eagle. In the first and third example, the outline of an eagle is quite apparent, and is a little blurrier in the other examples. 
+The results here are more similar to the simple autoencoder. The outlines are generally quite blurry, and seem to blend together different animal forms (for example, the fourth one appears to have cat and mouse features). Additionally, there seems to be some interesting behaviour with the eagle. In the first and third example, the outline of an eagle is quite apparent, and is a little blurrier in the other examples but still present upon close inspection.
 
 ### Generating new content
 
@@ -103,7 +103,7 @@ The convolutional autoencoders performed much better overall. The loss values du
 
 Conversely, the simple autoencoder behaved similarly to the variational one. Both had blurry outlines, and the reconstructions were not clear instances of one animal. The reconstructions also suggest that the model generalised to specific animal forms (such as cats and eagles). 
 
-Because the convolutional autoencoders performed much better overall, it highlights that a convolutional approach is necessary for this dataset. Convolutional layers have a greater ability to capture the details and distinctions found in the image set. This is apparent when comparing the reconstructions between the convolutional models and the non-convolutional ones. 
+Because the convolutional autoencoders performed much better overall, it highlights that a convolutional approach is necessary for this dataset. Perhaps this is because through the multiple convolutional layers, the model had a greater ability to capture the details and distinctions found in the image set. This is apparent when comparing the reconstructions between the convolutional models and the non-convolutional ones. 
 
 ## Main challenges 
 
