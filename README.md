@@ -115,5 +115,5 @@ There were several challenges when building autoencoders for this dataset:
 Future avenues for this project include:
 1. Fine-tuning the autoencoders to capture more detail and fixing the colour channel issue
 2. Generating new latent vectors and images from the convolutional autoencoders
-3. Incorporating text-based descriptions of the villagers in order to generate completely new NPCs 
+3. Incorporating text-based descriptions of the villagers in order to generate fully developed NPCs 
 4. Analyzing the latent space to discover where different features lie (for example, how is the animal species encoded?)
