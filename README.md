@@ -106,8 +106,14 @@ Because the convolutional autoencoders performed much better overall, it suggest
 ## Main challenges 
 
 There were several challenges when building autoencoders for this dataset:
-1. The images in the original dataset were all of different sizes, and so required image preprocessing to get them to the same size
+1. The images in the original dataset were all of different sizes, and so required image preprocessing to get them to the same size.
 2. The images were not all aligned at the eye level. As a result, the models struggled to find a common point to build new images from. This was apparent in the reconstructions of the simple and variational autoencoders.
 3. All of the mdoels required tweaking for this specific dataset, including flattening and reshaping the data at different points in the architecture.
 
 ## Future avenues 
+
+Future avenues for this project include:
+1. Fine-tuning the autoencoders to capture more detail and fixing the colour channel issue
+2. Generating new latent vectors and images from the convolutional autoencoders
+3. Incorporating text-based descriptions of the villagers in order to generate completely new NPCs 
+4. Analyzing the latent space to discover where different features lie (for example, how is the animal species encoded?)
