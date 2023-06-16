@@ -91,13 +91,23 @@ To generate new latent vectors, I first wanted to get a sense of where the train
 
 ![vae random results](https://git.arts.ac.uk/storage/user/650/files/7d46b6b0-91e7-4f94-aff9-1760ae7a1bee)
 
+Both the eagle and the cat stand out quite a bit in these new images. 
 
 ## Evaluating performance  
 
-conv2d one overall was great
+Of the four autoencoders built, I found similarities between the convolutional ones and the simple/variational ones.
 
-VAE/Simple autoencoder similar, makes me think there needed to be more convolutional layers to truly capture the details of the dataset
+The convolutional autoencoders performed much better overall. The loss values during training were significantly smaller, and the resulting reconstructions clearer and more accurate.
+
+Conversely, the simple autoencoder behaved similarly to the variational one. Both had blurry outlines, and the reconstructions were not clear instances of one animal. In the variational autoencoder, cats and eagles stood out. 
+
+Because the convolutional autoencoders performed much better overall, it suggests that a convolutional approach is necessary for this dataset. Convolutional layers have a greater ability to capture the details and distinctions found in the image set. This is apparent when comparing the reconstructions between the convolutional models and the non-convolutional ones. 
 
 ## Main challenges 
+
+There were several challenges when building autoencoders for this dataset:
+1. The images in the original dataset were all of different sizes, and so required image preprocessing to get them to the same size
+2. The images were not all aligned at the eye level. As a result, the models struggled to find a common point to build new images from. This was apparent in the reconstructions of the simple and variational autoencoders.
+3. All of the mdoels required tweaking for this specific dataset, including flattening and reshaping the data at different points in the architecture.
 
 ## Future avenues 
