@@ -109,8 +109,8 @@ Because the convolutional autoencoders performed much better overall, it highlig
 
 There were several challenges when building autoencoders for this dataset:
 1. The images in the original dataset were all of different sizes, and so required image preprocessing to get them to the same size.
-2. The images were not all aligned at the eye level. As a result, the models struggled to find a common point to build new images from. This was apparent in the reconstructions of the simple and variational autoencoders.
-3. All of the mdoels required tweaking for this specific dataset, including flattening and reshaping the data at different points in the architecture.
+2. There was no common point of alignment (such as at the eye level). As a result, the models struggled to find a common point to build new images from. This was especially apparent in the reconstructions of the simple and variational autoencoders.
+3. All of the models required tweaking for this specific dataset, including flattening and reshaping the data at different points in the architecture.
 4. The entire dataset was relatively small, and even more so for training. More images would have likely improved the performance of the models. 
 
 ## Future avenues 
