@@ -4,7 +4,7 @@ Git repository for Coding 3 - final project
 
 For my final project, I decided to explore how autoencoders can be used to recreate and generate content in video games. More specifically, I used a dataset of non-player character images from Nintendo's popular game *Animal Crossing: New Horizons*. My aim was to build an autoencoder that could recreate the images and construct a latent space that would allow me to generate new images. 
 
-I found a dataset on Kaggle that contains images of all of the villagers from the game, with 392 files total. The dataset can be found at the following link: https://www.kaggle.com/datasets/jahysama/animal-crossing-new-horizons-all-villagers
+I found a dataset on Kaggle that contains images of all of the villagers from the game, with 392 files total. The dataset can be found at the following link: https://www.kaggle.com/datasets/jahysama/animal-crossing-new-horizons-all-villagers (the images in this repository are under the folder 'villagers'). 
 
 ## Sources 
 
