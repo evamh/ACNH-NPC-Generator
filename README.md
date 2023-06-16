@@ -16,7 +16,7 @@ This project uses code from the following sources:
 
 ## Data preprocessing
 
-Because the original images were of all different sizes, I needed to resize the images to begin with. I chose the dimensions (640, 400) and with help from ChatGPT, was able to reshape all of these images to these dimensions. I then was able to create the training and test set from this dataset, with around 20% of the images belonging to the test set. Since this is an unsupervised learning problem, there are no arrays for labels.
+Because the original images were of all different sizes, I needed to resize the images to begin with. I chose the dimensions (640, 400) and with help from ChatGPT, was able to reshape all of these images to these dimensions. I was then able to create the training and test set from this dataset, with around 20% of the images going to the test set. Since this is an unsupervised learning problem, there are is no dataset for image labels.
 
 One issue I noticed right at the start is that the photos are not all aligned. For instance, some animals (such as a mouse or cat) are staring straight at the 'camera', whereas others (such as elephants) are looking off to the side. This isn't ideal for an autoencoder, and is something important to keep in mind. 
 
@@ -56,18 +56,17 @@ With help from the coding 3 team and ChatGPT, I was able to build a new model th
 
 <img src="https://git.arts.ac.uk/storage/user/650/files/4eb414c6-9425-41ec-a804-e8decf060198" width="45%">
 
-
 Despite the compressed latent vector, the reconstructed images still keep the outline of the animal and are more defined than the simplest autoencoder. They are definitely 'grainier' in appearance than the first convolutional autoencoder, and it is more difficult to make out the features of the animal. 
 
 ![convolutional autoencoder 2 results](https://git.arts.ac.uk/storage/user/650/files/3a5bdec2-418e-4da7-8bbb-9470c74b6ca3)
 
-That being said, I was pleasantly surprised with the performance of this autoencoder. Given the compressed latent vector, the model was still able to reconstruct the original image to a rather large extent. 
+That being said, I was pleasantly surprised with the performance of this autoencoder. Given the compressed latent vector, the model was still able to reconstruct a defined image that reflected the original image to a considerable extent.
 
 ### Variational autoencoder
 
 Finally, I built a variational autoencoder to use on this dataset. Again, I followed the tutorial and also drew from the week 4 notebook 'ConvolutionalVAE'. 
 
-Initilly, the dataset didn't work with this model due to its shape. With help from ChatGPT, I was able to get the data flattened down to a (None, 1024000) representation that worked with the autoencoder. 
+Initially, the dataset didn't work with this model due to its shape. With help from ChatGPT, I was able to tailor the model and get the data flattened down to a (None, 1024000) representation that worked with the autoencoder. 
 
 <img src="https://git.arts.ac.uk/storage/user/650/files/84b3fa22-2c05-4cd5-b4eb-b5e948101af2" width="45%">
 
@@ -77,31 +76,31 @@ ChatGPT gave me advice on what to check. Two of these were setting the correct l
 
 ![vae model results](https://git.arts.ac.uk/storage/user/650/files/5929ce82-0115-490b-bc47-e5b898fc6dac)
 
-The results here are more similar to the simple autoencoder. The outlines are generally quite blurry, and seem to be a blend together different animal forms (for example, the fourth one appears to have cat and mouse features). Additionally, there seems to be some interesting behaviour with the eagle. In the first and third example, the outline of an eagle is easy to find, and is a little blurrier in the other examples. 
+The results here are more similar to the simple autoencoder. The outlines are generally quite blurry, and seem to blend together different animal forms (for example, the fourth one appears to have cat and mouse features). Additionally, there seems to be some interesting behaviour with the eagle. In the first and third example, the outline of an eagle is quite apparent, and is a little blurrier in the other examples. 
 
 ### Generating new content
 
-Using the variational autoencoder, I explored how to generate new images using the latent space. First, I chose a random test image and ran it through the encoder  to get its latent vector, then passed this into the decoder to get the image reconstruction.
+Using the variational autoencoder, I explored how to generate new images using the latent space. First, I chose a random test image and ran it through the encoder to get its latent vector, then passed this into the decoder to get the image reconstruction.
 
 <img src="https://git.arts.ac.uk/storage/user/650/files/79df1659-bf4c-4149-8fa8-ca1fe2d1deac" width="20%"> <img src="https://git.arts.ac.uk/storage/user/650/files/253fbc3f-db91-433d-b7f1-b3edf8c25c95" width="20%">
 
-To generate new latent vectors, I first wanted to get a sense of where the training latent vectors lay. With help from ChatGPT, I found the min and max latent vector values from the training data. I then generated 10 random vectors within this range, and ran them through the decoder.
+To generate new latent vectors, I first wanted to get a sense of where the training latent vectors were. With help from ChatGPT, I found the min and max latent vector values from the training data. I then generated 10 random vectors within this range, and ran them through the decoder.
 
 <img src="https://git.arts.ac.uk/storage/user/650/files/db3c6d5e-1cfa-40ea-95e8-b140c185ea82" width="20%">
 
 ![vae random results](https://git.arts.ac.uk/storage/user/650/files/7d46b6b0-91e7-4f94-aff9-1760ae7a1bee)
 
-Both the eagle and the cat stand out quite a bit in these new images. 
+One observation that I immediately made is that both the eagle and the cat stand out quite a bit in these new images, which suggests that the model generalised to these forms more so than the other animals.
 
 ## Evaluating performance  
 
-Of the four autoencoders built, I found similarities between the convolutional ones and the simple/variational ones.
+Of the four autoencoders built, I found strong similarities between the convolutional ones and the simple/variational ones.
 
 The convolutional autoencoders performed much better overall. The loss values during training were significantly smaller, and the resulting reconstructions clearer and more accurate.
 
-Conversely, the simple autoencoder behaved similarly to the variational one. Both had blurry outlines, and the reconstructions were not clear instances of one animal. In the variational autoencoder, cats and eagles stood out. 
+Conversely, the simple autoencoder behaved similarly to the variational one. Both had blurry outlines, and the reconstructions were not clear instances of one animal. The reconstructions also suggest that the model generalised to specific animal forms (such as cats and eagles). 
 
-Because the convolutional autoencoders performed much better overall, it suggests that a convolutional approach is necessary for this dataset. Convolutional layers have a greater ability to capture the details and distinctions found in the image set. This is apparent when comparing the reconstructions between the convolutional models and the non-convolutional ones. 
+Because the convolutional autoencoders performed much better overall, it highlights that a convolutional approach is necessary for this dataset. Convolutional layers have a greater ability to capture the details and distinctions found in the image set. This is apparent when comparing the reconstructions between the convolutional models and the non-convolutional ones. 
 
 ## Main challenges 
 
@@ -109,11 +108,12 @@ There were several challenges when building autoencoders for this dataset:
 1. The images in the original dataset were all of different sizes, and so required image preprocessing to get them to the same size.
 2. The images were not all aligned at the eye level. As a result, the models struggled to find a common point to build new images from. This was apparent in the reconstructions of the simple and variational autoencoders.
 3. All of the mdoels required tweaking for this specific dataset, including flattening and reshaping the data at different points in the architecture.
+4. The entire dataset was relatively small, and even more so for training. More instances of villagers may have improved the performance of the models. 
 
 ## Future avenues 
 
 Future avenues for this project include:
-1. Fine-tuning the autoencoders to capture more detail and fixing the colour channel issue
-2. Generating new latent vectors and images from the convolutional autoencoders
-3. Incorporating text-based descriptions of the villagers in order to generate fully developed NPCs 
-4. Analyzing the latent space to discover where different features lie (for example, how is the animal species encoded?)
+1. Fine-tuning the autoencoders to capture more detail and fixing the colour channel issue.
+2. Generating new latent vectors and images from the convolutional autoencoders.
+3. Incorporating text-based descriptions of the villagers in order to generate fully developed NPCs.
+4. Analyzing the latent space to discover where different features lie (for example, how is the animal species encoded?).
