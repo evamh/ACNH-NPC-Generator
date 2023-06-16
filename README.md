@@ -1,5 +1,5 @@
 # Coding Three: Exploring Machine Intelligence
-# FinalProject
+# Final Project
 Git repository for Coding 3 - final project
 
 
