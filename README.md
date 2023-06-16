@@ -77,13 +77,26 @@ ChatGPT gave me advice on what to check. Two of these were setting the correct l
 
 ![vae model results](https://git.arts.ac.uk/storage/user/650/files/5929ce82-0115-490b-bc47-e5b898fc6dac)
 
+The results here are more similar to the simple autoencoder. The outlines are generally quite blurry, and seem to be a blend together different animal forms (for example, the fourth one appears to have cat and mouse features). Additionally, there seems to be some interesting behaviour with the eagle. In the first and third example, the outline of an eagle is easy to find, and is a little blurrier in the other examples. 
+
 ### Generating new content
 
-Using the variational autoencoder, I explored how to generate new images from the latent space. First, I chose a random test image and ran it through the encoder only to get its latent vector. Once I had the latent vector, I then passed this into the decoder to get the image reconstruction.
+Using the variational autoencoder, I explored how to generate new images using the latent space. First, I chose a random test image and ran it through the encoder  to get its latent vector, then passed this into the decoder to get the image reconstruction.
+
+<img src="https://git.arts.ac.uk/storage/user/650/files/79df1659-bf4c-4149-8fa8-ca1fe2d1deac" width="20%"> <img src="https://git.arts.ac.uk/storage/user/650/files/253fbc3f-db91-433d-b7f1-b3edf8c25c95" width="20%">
+
+To generate new latent vectors, I first wanted to get a sense of where the training latent vectors lay. With help from ChatGPT, I found the min and max latent vector values from the training data. I then generated 10 random vectors within this range, and ran them through the decoder.
+
+<img src="https://git.arts.ac.uk/storage/user/650/files/db3c6d5e-1cfa-40ea-95e8-b140c185ea82" width="20%">
+
+![vae random results](https://git.arts.ac.uk/storage/user/650/files/7d46b6b0-91e7-4f94-aff9-1760ae7a1bee)
+
 
 ## Evaluating performance  
 
 conv2d one overall was great
+
+VAE/Simple autoencoder similar, makes me think there needed to be more convolutional layers to truly capture the details of the dataset
 
 ## Main challenges 
 
