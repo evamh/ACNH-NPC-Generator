@@ -1,9 +1,7 @@
-# Coding Three: Exploring Machine Intelligence
-# Final Project
-Git repository for Coding 3 - final project
+# *Animal Crossing: New Horizons* Exploring NPC Generation using autoencoders
+Final project for Coding Three - Exploring Machine Intelligence in my MSc Creative Computing Course at UAL - CCI.
 
-
-For my final project, I decided to explore how autoencoders can be used to recreate and generate content in video games. More specifically, I used a dataset of non-player character images from Nintendo's popular game *Animal Crossing: New Horizons*. My aim was to build an autoencoder that could recreate the images and construct a latent space that would allow me to generate new images. 
+In this project, I explore how autoencoders can be used to recreate and generate content in video games. More specifically, I used a dataset of non-player character images from Nintendo's popular game *Animal Crossing: New Horizons*. My aim was to build an autoencoder that could recreate the images and construct a latent space that would allow me to generate new images. 
 
 ## Dataset
 
@@ -13,7 +11,7 @@ I found a dataset on Kaggle that contains images of all of the villagers from th
 
 This project uses code from the following sources:
 1. *Building Autoencoders in Keras*, https://blog.keras.io/building-autoencoders-in-keras.html
-2. The 'ConvolutionalVAE' notebook from week 4 of class
+2. The 'ConvolutionalVAE' notebook from week 4 of Coding Three-Exploring Machine Inteligence at the CCI, UAL
 3. ChatGPT (especially for debugging, image processing and visualisation)
 4. Help from the coding 3 team at the CCI 
 
