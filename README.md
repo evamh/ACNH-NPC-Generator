@@ -1,4 +1,4 @@
-# *Animal Crossing: New Horizons* Exploring NPC Generation using autoencoders
+# Nintendo's *Animal Crossing: New Horizons* Exploring NPC Generation using autoencoders
 Final project for Coding Three - Exploring Machine Intelligence in my MSc Creative Computing Course at UAL - CCI.
 
 In this project, I explore how autoencoders can be used to recreate and generate content in video games. More specifically, I used a dataset of non-player character images from Nintendo's popular game *Animal Crossing: New Horizons*. My aim was to build an autoencoder that could recreate the images and construct a latent space that would allow me to generate new images. 
